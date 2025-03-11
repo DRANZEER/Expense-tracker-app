@@ -28,6 +28,14 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void _openAddExpenseOverlay() {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      context: context,
+      builder: (ctx) => NewExpenses(onAddExpenses: _addExpense),
+    );
+  }
+
   // adding new expanses in the list.
   void _addExpense(Expense expense) {
     setState(() {
@@ -35,12 +43,11 @@ class _ExpensesState extends State<Expenses> {
     });
   }
 
-  void _openAddExpenseOverlay() {
-    showModalBottomSheet(
-      isScrollControlled: true,
-      context: context,
-      builder: (ctx) => NewExpenses(onAddExpenses: _addExpense),
-    );
+  //Deleting the Data when user is deleting.
+  void _removeExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.remove(expense);
+    });
   }
 
   @override
@@ -59,7 +66,10 @@ class _ExpensesState extends State<Expenses> {
         children: [
           Text('The chart'),
           Expanded(
-            child: ExpensesList(expenses: _registeredExpenses),
+            child: ExpensesList(
+              expenses: _registeredExpenses,
+              onRemoveExpense: _removeExpense,
+            ),
           ),
         ],
       ),
