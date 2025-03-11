@@ -2,7 +2,9 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
 class NewExpenses extends StatefulWidget {
-  const NewExpenses({super.key});
+  const NewExpenses({super.key, required this.onAddExpenses});
+
+  final Function(Expense expense) onAddExpenses;
 
   @override
   State<StatefulWidget> createState() {
@@ -16,6 +18,7 @@ class _NewExpenseState extends State<NewExpenses> {
   DateTime? _selectedDate;
   Category _selectedCategory = Category.leisure;
 
+// creating function for Date picker.
   void _presentDatePicker() async {
     final now = DateTime.now();
     final firstdate = DateTime(now.year - 1, now.month, now.day);
@@ -32,6 +35,7 @@ class _NewExpenseState extends State<NewExpenses> {
     );
   }
 
+// Function to validate value and display any error massage if any invalid value.
   void _submitExpenseData() {
     final enteredAmount = double.tryParse(
         _amountController.text); // converts the String into Double.
@@ -48,7 +52,7 @@ class _NewExpenseState extends State<NewExpenses> {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(ctx);
+                Navigator.pop(ctx); //close the Alert dialog.
               },
               child: const Text('Ok'),
             ),
@@ -57,8 +61,18 @@ class _NewExpenseState extends State<NewExpenses> {
       );
       return;
     }
+    widget.onAddExpenses(
+      Expense(
+        title: _titleController.text,
+        amount: enteredAmount,
+        date: _selectedDate!,
+        category: _selectedCategory,
+      ),
+    );
+    Navigator.pop(context);
   }
 
+//free memory.
   @override
   void dispose() {
     _titleController.dispose();
@@ -69,7 +83,7 @@ class _NewExpenseState extends State<NewExpenses> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.fromLTRB(16, 48, 16, 16),
       child: Column(
         children: [
           TextField(

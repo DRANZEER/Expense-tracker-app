@@ -16,7 +16,7 @@ class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
       title: 'Flutter Course',
-      amount: 19.99,
+      amount: 19.00,
       date: DateTime.now(),
       category: Category.work,
     ),
@@ -28,10 +28,18 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  // adding new expanses in the list.
+  void _addExpense(Expense expense) {
+    setState(() {
+      _registeredExpenses.add(expense);
+    });
+  }
+
   void _openAddExpenseOverlay() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => NewExpenses(),
+      builder: (ctx) => NewExpenses(onAddExpenses: _addExpense),
     );
   }
 
