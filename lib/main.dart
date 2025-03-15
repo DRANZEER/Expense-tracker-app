@@ -28,6 +28,24 @@ void main() {
             foregroundColor: kDarkColorScheme.onPrimaryContainer,
           ),
         ),
+         textTheme: TextTheme().copyWith(
+          bodyMedium: TextStyle(
+            color: kDarkColorScheme.onSecondaryContainer,
+          ),
+          titleLarge: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: kDarkColorScheme.onSecondaryContainer,
+            fontSize: 16,
+          ),
+          titleSmall: TextStyle(
+            fontWeight: FontWeight.normal,
+            color: kDarkColorScheme.onSecondaryContainer,
+          ),
+          titleMedium: TextStyle(
+            fontWeight: FontWeight.normal,
+            color: kDarkColorScheme.onPrimaryContainer,
+          ),
+        ),
       ),
       theme: ThemeData().copyWith(
         //scaffoldBackgroundColor: Color.fromARGB(255, 151, 168, 233),
