@@ -48,6 +48,9 @@ void main() {
           ),
         ),
         textTheme: TextTheme().copyWith(
+          bodyMedium: TextStyle(
+            color: kColorScheme.onSecondaryContainer,
+          ),
           titleLarge: TextStyle(
             fontWeight: FontWeight.bold,
             color: kColorScheme.onSecondaryContainer,
@@ -56,6 +59,10 @@ void main() {
           titleSmall: TextStyle(
             fontWeight: FontWeight.normal,
             color: kColorScheme.onSecondaryContainer,
+          ),
+          titleMedium: TextStyle(
+            fontWeight: FontWeight.normal,
+            color: kColorScheme.onPrimaryContainer,
           ),
         ),
       ),
