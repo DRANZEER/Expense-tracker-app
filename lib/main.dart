@@ -71,7 +71,16 @@ void main() {
             ),
           ),
           textTheme: TextTheme().copyWith(
+            headlineSmall: TextStyle(
+              color: kColorScheme.onSecondaryContainer,
+            ),
             bodyMedium: TextStyle(
+              color: kColorScheme.onSecondaryContainer,
+            ),
+            bodyLarge: TextStyle(
+              color: kColorScheme.onSecondaryContainer,
+            ),
+            bodySmall: TextStyle(
               color: kColorScheme.onSecondaryContainer,
             ),
             titleLarge: TextStyle(
