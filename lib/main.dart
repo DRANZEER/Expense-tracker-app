@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
-import 'package:expense_tracker/widgets/expenses.dart';
+// import 'package:expense_tracker/widgets/expenses.dart';
+import 'loginpage.dart';
 
 var kColorScheme = ColorScheme.fromSeed(
   seedColor: const Color.fromARGB(255, 94, 59, 181),
@@ -16,8 +17,10 @@ void main() {
   // SystemChrome.setPreferredOrientations([
   //   DeviceOrientation.portraitUp,
   // ]).then((fn) {
+  print('hellow');
     runApp(
       MaterialApp(
+        debugShowCheckedModeBanner: false,
         darkTheme: ThemeData.dark().copyWith(
           colorScheme: kDarkColorScheme,
           cardTheme: CardTheme().copyWith(
@@ -53,7 +56,6 @@ void main() {
           ),
         ),
         theme: ThemeData().copyWith(
-          //scaffoldBackgroundColor: Color.fromARGB(255, 151, 168, 233),
           appBarTheme: const AppBarTheme().copyWith(
             backgroundColor: kColorScheme.onPrimaryContainer,
             foregroundColor: kColorScheme.primaryContainer,
@@ -99,7 +101,7 @@ void main() {
           ),
         ),
         themeMode: ThemeMode.system,
-        home: const Expenses(),
+        home: const LoginPage(),
       ),
     );
   // });

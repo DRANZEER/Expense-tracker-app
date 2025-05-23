@@ -3,6 +3,7 @@ import 'package:expense_tracker/widgets/expenses_list.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expenses.dart';
 import 'package:flutter/material.dart';
+import 'package:expense_tracker/loginpage.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -17,15 +18,39 @@ class _ExpensesState extends State<Expenses> {
   final List<Expense> _registeredExpenses = [
     Expense(
       title: 'Flutter Course',
-      amount: 19.00,
+      amount: 100.00,
       date: DateTime.now(),
       category: Category.work,
     ),
     Expense(
       title: 'Movies',
-      amount: 25.00,
+      amount: 150.00,
       date: DateTime.now(),
       category: Category.leisure,
+    ),
+    Expense(
+      title: 'KFC',
+      amount: 200.00,
+      date: DateTime.now(),
+      category: Category.food,
+    ),
+    Expense(
+      title: 'Books',
+      amount: 100.00,
+      date: DateTime.now(),
+      category: Category.mislicious,
+    ),
+    Expense(
+      title: 'Medicine',
+      amount: 210.00,
+      date: DateTime.now(),
+      category: Category.health,
+    ),
+    Expense(
+      title: 'Delhi',
+      amount: 500.00,
+      date: DateTime.now(),
+      category: Category.travel,
     ),
   ];
 
@@ -38,14 +63,12 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 
-  // adding new expanses in the list.
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
     });
   }
 
-  //Deleting the Data when user is deleting.
   void _removeExpense(Expense expense) {
     final expenseIndex = _registeredExpenses.indexOf(expense);
     setState(() {
@@ -57,12 +80,42 @@ class _ExpensesState extends State<Expenses> {
         duration: const Duration(seconds: 3),
         content: const Text('Expense deleted'),
         action: SnackBarAction(
-            label: 'Undo',
+          label: 'Undo',
+          onPressed: () {
+            setState(() {
+              _registeredExpenses.insert(expenseIndex, expense);
+            });
+          },
+        ),
+      ),
+    );
+  }
+
+  void _logout() {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text('Confirm Logout'),
+        content: Text('Are you sure you want to log out?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(), // Cancel
+            child: Text('Cancel'),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary,
+            ),
             onPressed: () {
-              setState(() {
-                _registeredExpenses.insert(expenseIndex, expense);
-              });
-            }),
+              Navigator.of(ctx).pop(); // Close dialog
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+            child: Text('Logout'),
+          ),
+        ],
       ),
     );
   }
@@ -70,9 +123,10 @@ class _ExpensesState extends State<Expenses> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+
     Widget mainContent = const Center(
       child: Text(
-        'No expenses found. Start adding somae!',
+        'No expenses found. Start adding some!',
         style: TextStyle(fontSize: 16),
       ),
     );
@@ -92,6 +146,11 @@ class _ExpensesState extends State<Expenses> {
             onPressed: _openAddExpenseOverlay,
             style: IconButton.styleFrom(foregroundColor: Colors.white),
             icon: Icon(Icons.add),
+          ),
+          IconButton(
+            onPressed: _logout,
+            style: IconButton.styleFrom(foregroundColor: Colors.white),
+            icon: Icon(Icons.logout),
           ),
         ],
       ),

@@ -95,6 +95,9 @@ class _NewExpenseState extends State<NewExpenses> {
               padding: EdgeInsets.fromLTRB(16, 48, 16, keyboardSpace + 16),
               child: Column(
                 children: [
+                  Text('Add New Expense',
+                  style: TextStyle(fontSize: 20),
+                  ),
                   if (width >= 600)
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -255,19 +258,25 @@ class _NewExpenseState extends State<NewExpenses> {
                           },
                         ),
                         const Spacer(),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('Close'),
+                        ),
                         ElevatedButton(
                           onPressed: _submitExpenseData,
                           child: Text(
                             'Save Expense',
                           ),
                         ),
-                        Spacer(),
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: Text('Close'),
-                        ),
+                        // Spacer(),
+                        // TextButton(
+                        //   onPressed: () {
+                        //     Navigator.pop(context);
+                        //   },
+                        //   child: Text('Close'),
+                        // ),
                       ],
                     ),
                 ],

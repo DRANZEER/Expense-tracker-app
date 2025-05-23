@@ -11,6 +11,8 @@ enum Category {
   travel,
   leisure,
   work,
+  health,
+  mislicious,
 }
 
 const categoryIcons = {
@@ -18,6 +20,8 @@ const categoryIcons = {
   Category.travel: Icons.travel_explore_rounded,
   Category.leisure: Icons.movie,
   Category.work: Icons.work,
+  Category.health: Icons.health_and_safety_rounded,
+  Category.mislicious: Icons.shopping_bag_rounded,
 };
 
 class Expense {
