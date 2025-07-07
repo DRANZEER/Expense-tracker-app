@@ -135,7 +135,7 @@ class _ExpensesState extends State<Expenses> {
     );
 
     if (_registeredExpenses.isNotEmpty) {
-      mainContent = ExpenddsesList(
+      mainContent = ExpensesList(
         expenses: _registeredExpenses,
         onRemoveExpense: _removeExpense,
       );
