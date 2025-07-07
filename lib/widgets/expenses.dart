@@ -113,7 +113,10 @@ class _ExpensesState extends State<Expenses> {
                 MaterialPageRoute(builder: (context) => const LoginPage()),
               );
             },
-            child: Text('Logout'),
+            child: Text(
+              'Logout',
+              style: TextStyle(color: Colors.white),
+            ),
           ),
         ],
       ),
@@ -132,7 +135,7 @@ class _ExpensesState extends State<Expenses> {
     );
 
     if (_registeredExpenses.isNotEmpty) {
-      mainContent = ExpensesList(
+      mainContent = ExpenddsesList(
         expenses: _registeredExpenses,
         onRemoveExpense: _removeExpense,
       );
